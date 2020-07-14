@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use JobIndustries\IndustryBadges\IndustryBadges;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -62,7 +63,7 @@ class Industry extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [new IndustryBadges()];
     }
 
     /**
