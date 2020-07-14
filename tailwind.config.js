@@ -3,8 +3,11 @@ module.exports = {
     theme: {
         extend: {},
     },
-    variants: {},
+    variants: {
+        backgroundColor: ['responsive', 'hover', 'focus', 'odd'],
+    },
     plugins: [
         require('@tailwindcss/ui'),
+        require('tailwindcss-plugins/pagination'),
     ]
 }
