@@ -1,7 +1,10 @@
 <x-layout>
     <x-section>
-        <h1>Users</h1>
-        <div class="mt-4 w-full flex justify-end">
+        <h1 class="text-3xl leading-6 font-semibold">Users</h1>
+        <div class="mt-4 w-full flex justify-between items-end">
+            <div>
+                <span class="text-sm text-gray-500">{{ $users->count() }} of {{ $users->total() }} users</span>
+            </div>
             <form action="{{ route('welcome') }}" method="GET">
                 <div class="flex items-end space-x-2">
                     <div>
@@ -10,6 +13,7 @@
                         <select id="industry"
                                 name="industry"
                                 class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                <option value="" {{ request()->industry == '' ? 'selected' : '' }}>All</option>
                             @foreach ($industries as $industry)
                                 <option value="{{ $industry->id }}" {{ request()->industry == $industry->id ? 'selected' : '' }}>{{ $industry->name }}</option>
                             @endforeach

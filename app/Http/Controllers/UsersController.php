@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Industry;
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class UsersController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        dump($request->all());
         $users = User::with('industries')
-            ->when($request->has('industry'), function ($query) use ($request) {
-                return $query->whereHas('industries', function($q) use ($request) {
-                    $q->where('industry_id', $request->get('industry'));
+            ->when(Request::input('industry'), function ($query, $industry) {
+                return $query->whereHas('industries', function($q) use ($industry) {
+                    $q->where('industry_id', $industry);
                 });
             })
             ->paginate(15);
